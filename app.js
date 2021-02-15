@@ -21,21 +21,82 @@ class Question{
     }
 
     normal(operation){
-        this.compute(10,100,operation)
+        if(operation != '^' && operation != 'sqrt')
+            this.compute(10,100,operation)
+        else
+            this.compute(4,20,operation)
     }
 
     hard(operation){
-        this.compute(100,1000,operation)
+        if(operation != '^' && operation != 'sqrt')
+            this.compute(100,1000,operation)
+        else
+            this.compute(4,100,operation)
     }
 
     compute(min, max, operation){
         let num1 = this.random(min+5, max),
         num2 = this.random(min, max);
+
+        if(operation == '^' && this.difficulty=='easy'){
+            num1 = this.random(min, max);
+            num2 = this.random(0, 2);
+        }
+
+        if(operation == 'sqrt' && this.difficulty=='easy'){
+            num1 = Math.pow(this.random(min, max), 2);
+        }
+
+        if(operation == '^' && this.difficulty=='average'){
+            num1 = this.random(min, max);
+            num2 = this.random(1, 2);
+        }
+
+        if(operation == 'sqrt' && this.difficulty=='average'){
+            num1 = Math.pow(this.random(min, max), 2);
+        }
+
+        if(operation == '^' && this.difficulty=='hard'){
+            num1 = this.random(min, max);
+            num2 = this.random(1, 2);
+        }
+
+        if(operation == 'sqrt' && this.difficulty=='hard'){
+            num1 = Math.pow(this.random(min, max), 2);
+        }
+
+        if(this.difficulty=='easy' && operation != '^' && operation != 'sqrt'){
+            num1 = this.random(min, 5) + 5;
+            num2 = num1 - this.random(min, 5);
+        }
         
        switch(operation){
            case '+':
             this.question = `${num1} + ${num2}`;
             this.answer = (num1+num2).toString()
+           break;
+           case '-':
+            this.question = `${num1} - ${num2}`;
+            this.answer = (num1-num2).toString()
+           break;
+           case '×':
+            this.question = `${num1} × ${num2}`;
+            this.answer = (num1*num2).toString()
+           break;
+           case '÷':
+               if(num2===1) ++num2
+            this.question = `${num1} ÷ ${num2}`;
+            this.answer = +parseFloat((Math.round(((num1/num2)) * 10) / 10)).toString();
+           break;
+           case '^':
+               if(num2===1) ++num2
+            this.question = `${num1} ^ ${num2}`;
+            this.answer = (Math.pow(num1, num2)).toString()
+           break;
+           case 'sqrt':
+               if(num2===1) ++num2
+            this.question = `${"Square root of "} ${num1}`;
+            this.answer = (Math.sqrt(num1)).toString()
            break;
            default:
                return;
