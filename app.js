@@ -197,3 +197,68 @@ function initiateClass(){
         displayQuestion(question);
     }
 }
+
+function calculateResult(question){
+    const userAnswer = document.querySelector('[selected="true"]').innerText;
+    --totalQuestions;
+    if(userAnswer === question.answer){
+        ++totalMarks;
+    }else{
+        wrongQuestions.push(question.question + " isn't equal to " + userAnswer);
+        return;
+    }
+}
+
+function displayResult(){
+    let resultDiv = document.querySelector('.result');
+    gradeDiv = document.querySelector('.grade'),
+    wrongsDiv = document.querySelector('.wrongs'),
+    score = grade(totalMarks, totalQuestions2);
+    questionDiv.className = 'question animated fadeOut hide'
+    resultDiv.children[1].parentElement.className = 'result show animated fadeIn'
+    resultDiv.children[1].innerHTML = 
+    `<span class="option-container total">Total Questions: ${totalQuestions2}</span><span class="option-container correct">Correct: ${totalMarks}</span><span class="option-container wrong">Wrong: ${totalQuestions2-totalMarks}</span>`
+    gradeDiv.innerHTML = `<p>${score}</p>`
+
+    var wrongsText = "";
+    for(var i = 0; i < wrongQuestions.length; i++){
+        var wrongsText = wrongsText + "<br />" + wrongQuestions[i];
+    }
+    wrongsDiv.innerHTML = `<p>${wrongsText}</p>`
+}
+
+function confirmation(){
+    if(!document.querySelector('[selected="true"]')){
+        notify('Please Select all the required inputs.');
+        throw new Error('Please select all the required inputs')
+    }
+}
+
+function notify(msg){
+    noti.innerText = msg;
+    noti.style.color = 'var(--text-color)'
+    noti.style.background = 'var(--div-bg)';
+    noti.className = 'notify show animated slideInRight'
+    setTimeout(()=>{
+        noti.className='notify show animated slideOutRight'
+    }, 1000)
+}
+
+function grade(correct, total){
+    let percent = (100 * correct) / total;
+    if(percent >= 97) {
+        return "A+"
+    }else if(percent >= 90) {
+        return "A"
+    }else if(percent<=89&&percent>=80) {
+        return "B"
+    }else if(percent<=79&&percent>=70) {
+        return "C"
+    } else if(percent<=69&&percent>=60) {
+        return "D"
+    }else if(percent<60) {
+        return "F";
+    }else {
+        return;
+    }
+}
