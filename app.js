@@ -21,14 +21,14 @@ class Question{
     }
 
     normal(operation){
-        if(operation != '^' && operation != 'sqrt')
+        if(operation != '^' && operation != 'sqrt' && operation != '^3' && operation != 'cbrt')
             this.compute(10,100,operation)
         else
             this.compute(4,20,operation)
     }
 
     hard(operation){
-        if(operation != '^' && operation != 'sqrt')
+        if(operation != '^' && operation != 'sqrt' && operation != '^3' && operation != 'cbrt')
             this.compute(100,1000,operation)
         else
             this.compute(4,100,operation)
@@ -65,7 +65,34 @@ class Question{
             num1 = Math.pow(this.random(min, max), 2);
         }
 
-        if(this.difficulty=='easy' && operation != '^' && operation != 'sqrt'){
+        if(operation == '^3' && this.difficulty=='easy'){
+            num1 = this.random(min, max);
+            num2 = 3;
+        }
+
+        if(operation == 'cbrt' && this.difficulty=='easy'){
+            num1 = Math.pow(this.random(min, max), 3);
+        }
+
+        if(operation == '^3' && this.difficulty=='average'){
+            num1 = this.random(min, max);
+            num2 = 3;
+        }
+
+        if(operation == 'cbrt' && this.difficulty=='average'){
+            num1 = Math.pow(this.random(min, max), 3);
+        }
+
+        if(operation == '^3' && this.difficulty=='hard'){
+            num1 = this.random(min, max);
+            num2 = 3;
+        }
+
+        if(operation == 'cbrt' && this.difficulty=='hard'){
+            num1 = Math.pow(this.random(min, max), 3);
+        }
+
+        if(this.difficulty=='easy' && operation != '^' && operation != 'sqrt' && operation != '^3' && operation != 'cbrt'){
             num1 = this.random(min, 5) + 5;
             num2 = num1 - this.random(min, 5);
         }
@@ -97,6 +124,16 @@ class Question{
                if(num2===1) ++num2
             this.question = `${"Square root of "} ${num1}`;
             this.answer = (Math.sqrt(num1)).toString()
+           break;
+           case '^3':
+               if(num2===1) ++num2
+            this.question = `${num1} ^ ${num2}`;
+            this.answer = (Math.pow(num1, num2)).toString()
+           break;
+           case 'cbrt':
+               if(num2===1) ++num2
+            this.question = `${"Cube root of "} ${num1}`;
+            this.answer = (Math.cbrt(num1)).toString()
            break;
            default:
                return;
@@ -132,10 +169,152 @@ startDiv.addEventListener('click', firstQue)
 startButton.addEventListener('click', startQuiz)
 nextQuestionBtn.addEventListener('click', nextQuestion)
 
+var addition = false;
+var subtraction = false;
+var multiplication = false;
+var division = false;
+var square = false;
+var squareRoot = false;
+var cube = false;
+var cubeRoot = false;
+
+function switchAddition(){
+    if(addition)
+    {
+        addition = false;
+        document.getElementById("1").style.background = "#ffffff";
+        document.getElementById("1").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        addition = true;
+        document.getElementById("1").style.background = "#6ed158";
+        document.getElementById("1").style.color = "#ffffff";
+        operation = '+';
+    }
+}
+
+function switchSubtraction(){
+    if(subtraction)
+    {
+        subtraction = false;
+        document.getElementById("2").style.background = "#ffffff";
+        document.getElementById("2").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        subtraction = true;
+        document.getElementById("2").style.background = "#6ed158";
+        document.getElementById("2").style.color = "#ffffff";
+        operation = '-';
+    }
+}
+
+function switchMultiplication(){
+    if(multiplication)
+    {
+        multiplication = false;
+        document.getElementById("3").style.background = "#ffffff";
+        document.getElementById("3").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        multiplication = true;
+        document.getElementById("3").style.background = "#6ed158";
+        document.getElementById("3").style.color = "#ffffff";
+        operation = '×';
+    }
+}
+
+function switchDivision(){
+    if(division)
+    {
+        division = false;
+        document.getElementById("4").style.background = "#ffffff";
+        document.getElementById("4").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        division = true;
+        document.getElementById("4").style.background = "#6ed158";
+        document.getElementById("4").style.color = "#ffffff";
+        operation = '÷';
+    }
+}
+
+function switchSquare(){
+    if(square)
+    {
+        square = false;
+        document.getElementById("5").style.background = "#ffffff";
+        document.getElementById("5").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        square = true;
+        document.getElementById("5").style.background = "#6ed158";
+        document.getElementById("5").style.color = "#ffffff";
+        operation = '^';
+    }
+}
+
+function switchSquareRoot(){
+    if(squareRoot)
+    {
+        squareRoot = false;
+        document.getElementById("6").style.background = "#ffffff";
+        document.getElementById("6").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        squareRoot = true;
+        document.getElementById("6").style.background = "#6ed158";
+        document.getElementById("6").style.color = "#ffffff";
+        operation = 'sqrt';
+    }
+}
+
+function switchCube(){
+    if(cube)
+    {
+        cube = false;
+        document.getElementById("7").style.background = "#ffffff";
+        document.getElementById("7").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        cube = true;
+        document.getElementById("7").style.background = "#6ed158";
+        document.getElementById("7").style.color = "#ffffff";
+        operation = '^3';
+    }
+}
+
+function switchCubeRoot(){
+    if(cubeRoot)
+    {
+        cubeRoot = false;
+        document.getElementById("8").style.background = "#ffffff";
+        document.getElementById("8").style.color = "#494c6e";
+        operation = null;
+    }
+    else
+    {
+        cubeRoot = true;
+        document.getElementById("8").style.background = "#6ed158";
+        document.getElementById("8").style.color = "#ffffff";
+        operation = 'cbrt';
+    }
+}
 function startQuiz(){
-    confirmation()
     difficulty = difficulty.value;
-    operation = document.querySelector('[selected="true"]').getAttribute('operand');
     let div = document.querySelector('.start');
     div.className='start animated fadeOut';
         div.onanimationend = function() {
@@ -192,6 +371,27 @@ function initiateClass(){
     if(totalQuestions <= 0){
         displayResult()
     } else{
+        var questionType = new Array();
+        if(addition)
+            questionType.push('+');
+        if(subtraction)
+            questionType.push('-');
+        if(multiplication)
+            questionType.push('×');
+        if(division)
+            questionType.push('÷');
+        if(square)
+            questionType.push('^');
+        if(squareRoot)
+            questionType.push('sqrt');
+        if(cube)
+            questionType.push('^3');
+        if(cubeRoot)
+            questionType.push('cbrt');
+
+        var i = Math.floor(Math.random() * questionType.length);
+        operation = questionType[i];
+
         const question = new Question(difficulty, operation)
         previousQuestion = question;
         displayQuestion(question);

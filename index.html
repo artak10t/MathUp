@@ -18,12 +18,14 @@
             <h2>Select the difficulty and the type of questions you want and hit the Start button to continue.</h2>
         </div>
         <div class="start-options">
-            <span class="option-container" operand='+'>Addition</span>
-            <span class="option-container" operand='-'>Subtraction</span>
-            <span class="option-container" operand='×'>Multiplication</span>
-            <span class="option-container" operand='÷'>Division</span>
-            <span class="option-container" operand='^'>Square</span>
-            <span class="option-container" operand='sqrt'>Square Root</span>
+            <button class="option-menu" onclick="switchAddition()" id="1">Addition</button>
+            <button class="option-menu" onclick="switchSubtraction()" id="2">Subtraction</button>
+            <button class="option-menu" onclick="switchMultiplication()" id="3">Multiplication</button>
+            <button class="option-menu" onclick="switchDivision()" id="4">Division</button>
+            <button class="option-menu" onclick="switchSquare()" id="5">Square</button>
+            <button class="option-menu" onclick="switchSquareRoot()" id="6">Square Root</button>
+            <button class="option-menu" onclick="switchCube()" id="7">Cube</button>
+            <button class="option-menu" onclick="switchCubeRoot()" id="8">Cube Root</button>
         </div>
         <div class="difficulty">
             <label>Choose a difficulty:</label>
