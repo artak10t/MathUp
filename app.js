@@ -314,6 +314,9 @@ function switchCubeRoot(){
     }
 }
 function startQuiz(){
+    if(!addition && !subtraction && !multiplication && !division && !square && !squareRoot && !cube && !cubeRoot)
+        confirmation();
+
     difficulty = difficulty.value;
     let div = document.querySelector('.start');
     div.className='start animated fadeOut';
